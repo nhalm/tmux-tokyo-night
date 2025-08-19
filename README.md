@@ -4,6 +4,10 @@
   <h4>A Tokyo Night tmux theme directly inspired from Tokyo Night vim theme</h4>
     
   ---
+  
+  > **Fork Notice**: This is a fork of [janoamaral/tokyo-night-tmux](https://github.com/janoamaral/tokyo-night-tmux) modified to work with bash 3.2 (the default bash version included in macOS). Full credit to the original creator Jan Amaral for the amazing theme design and implementation.
+  
+  ---
     
   **[<kbd> <br> Features <br> </kbd>][features]**
   **[<kbd> <br> Screenshots <br> </kbd>][screenshots]**
