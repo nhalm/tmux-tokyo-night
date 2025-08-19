@@ -19,12 +19,12 @@ function generate_left_side_string() {
 	transparent=$(get_tmux_option "@theme_transparent_status_bar" "false")
 
 	if [ "$transparent" = "true" ]; then
-		local separator_end="#[bg=default]#{?client_prefix,#[fg=${PALLETE[yellow]}],#[fg=${PALLETE[green]}]}${left_separator:?}#[none]"
+		local separator_end="#[bg=default]#{?client_prefix,#[fg=$(get_palette_color yellow)],#[fg=$(get_palette_color green)]}${left_separator:?}#[none]"
 	else
-		local separator_end="#[bg=${PALLETE[bg_highlight]}]#{?client_prefix,#[fg=${PALLETE[yellow]}],#[fg=${PALLETE[green]}]}${left_separator:?}#[none]"
+		local separator_end="#[bg=$(get_palette_color bg_highlight)]#{?client_prefix,#[fg=$(get_palette_color yellow)],#[fg=$(get_palette_color green)]}${left_separator:?}#[none]"
 	fi
 
-	echo "#[fg=${PALLETE[fg_gutter]},bold]#{?client_prefix,#[bg=${PALLETE[yellow]}],#[bg=${PALLETE[green]}]} ${session_icon} #S ${separator_end}"
+	echo "#[fg=$(get_palette_color fg_gutter),bold]#{?client_prefix,#[bg=$(get_palette_color yellow)],#[bg=$(get_palette_color green)]} ${session_icon} #S ${separator_end}"
 }
 
 function generate_inactive_window_string() {
@@ -38,16 +38,16 @@ function generate_inactive_window_string() {
 	if [ "$transparent" = "true" ]; then
 		left_separator_inverse=$(get_tmux_option "@theme_transparent_left_separator_inverse" "")
 
-		local separator_start="#[bg=default,fg=${PALLETE['dark5']}]${left_separator_inverse}#[bg=${PALLETE['dark5']},fg=${PALLETE['bg_highlight']}]"
-		local separator_internal="#[bg=${PALLETE['dark3']},fg=${PALLETE['dark5']}]${left_separator:?}#[none]"
-		local separator_end="#[bg=default,fg=${PALLETE['dark3']}]${left_separator:?}#[none]"
+		local separator_start="#[bg=default,fg=$(get_palette_color dark5)]${left_separator_inverse}#[bg=$(get_palette_color dark5),fg=$(get_palette_color bg_highlight)]"
+		local separator_internal="#[bg=$(get_palette_color dark3),fg=$(get_palette_color dark5)]${left_separator:?}#[none]"
+		local separator_end="#[bg=default,fg=$(get_palette_color dark3)]${left_separator:?}#[none]"
 	else
-		local separator_start="#[bg=${PALLETE['dark5']},fg=${PALLETE['bg_highlight']}]${left_separator:?}#[none]"
-		local separator_internal="#[bg=${PALLETE['dark3']},fg=${PALLETE['dark5']}]${left_separator:?}#[none]"
-		local separator_end="#[bg=${PALLETE[bg_highlight]},fg=${PALLETE['dark3']}]${left_separator:?}#[none]"
+		local separator_start="#[bg=$(get_palette_color dark5),fg=$(get_palette_color bg_highlight)]${left_separator:?}#[none]"
+		local separator_internal="#[bg=$(get_palette_color dark3),fg=$(get_palette_color dark5)]${left_separator:?}#[none]"
+		local separator_end="#[bg=$(get_palette_color bg_highlight),fg=$(get_palette_color dark3)]${left_separator:?}#[none]"
 	fi
 
-	echo "${separator_start}#[fg=${PALLETE[white]}]#I${separator_internal}#[fg=${PALLETE[white]}] #{?window_zoomed_flag,$zoomed_window_icon,$inactive_window_icon}${inactive_window_title}${separator_end}"
+	echo "${separator_start}#[fg=$(get_palette_color white)]#I${separator_internal}#[fg=$(get_palette_color white)] #{?window_zoomed_flag,$zoomed_window_icon,$inactive_window_icon}${inactive_window_title}${separator_end}"
 }
 
 function generate_active_window_string() {
@@ -62,14 +62,14 @@ function generate_active_window_string() {
 	if [ "$transparent" = "true" ]; then
 		left_separator_inverse=$(get_tmux_option "@theme_transparent_left_separator_inverse" "")
 		
-		separator_start="#[bg=default,fg=${PALLETE['magenta']}]${left_separator_inverse}#[bg=${PALLETE['magenta']},fg=${PALLETE['bg_highlight']}]"
-		separator_internal="#[bg=${PALLETE['purple']},fg=${PALLETE['magenta']}]${left_separator:?}#[none]"
-		separator_end="#[bg=default,fg=${PALLETE['purple']}]${left_separator:?}#[none]"
+		separator_start="#[bg=default,fg=$(get_palette_color magenta)]${left_separator_inverse}#[bg=$(get_palette_color magenta),fg=$(get_palette_color bg_highlight)]"
+		separator_internal="#[bg=$(get_palette_color purple),fg=$(get_palette_color magenta)]${left_separator:?}#[none]"
+		separator_end="#[bg=default,fg=$(get_palette_color purple)]${left_separator:?}#[none]"
 	else
-		separator_start="#[bg=${PALLETE['magenta']},fg=${PALLETE['bg_highlight']}]${left_separator:?}#[none]"
-		separator_internal="#[bg=${PALLETE['purple']},fg=${PALLETE['magenta']}]${left_separator:?}#[none]"
-		separator_end="#[bg=${PALLETE[bg_highlight]},fg=${PALLETE['purple']}]${left_separator:?}#[none]"
+		separator_start="#[bg=$(get_palette_color magenta),fg=$(get_palette_color bg_highlight)]${left_separator:?}#[none]"
+		separator_internal="#[bg=$(get_palette_color purple),fg=$(get_palette_color magenta)]${left_separator:?}#[none]"
+		separator_end="#[bg=$(get_palette_color bg_highlight),fg=$(get_palette_color purple)]${left_separator:?}#[none]"
 	fi
 
-	echo "${separator_start}#[fg=${PALLETE[white]}]#I${separator_internal}#[fg=${PALLETE[white]}] #{?window_zoomed_flag,$zoomed_window_icon,$active_window_icon}${active_window_title}#{?pane_synchronized,$pane_synchronized_icon,}${separator_end}#[none]"
+	echo "${separator_start}#[fg=$(get_palette_color white)]#I${separator_internal}#[fg=$(get_palette_color white)] #{?window_zoomed_flag,$zoomed_window_icon,$active_window_icon}${active_window_title}#{?pane_synchronized,$pane_synchronized_icon,}${separator_end}#[none]"
 }

@@ -159,8 +159,8 @@ else
     fi
 
     template=$1
-    result="${template//_ACCENT_COLOR_ICON_/${PALLETE[$plugin_battery_accent_color_icon]}}"
-    result="${result//_ACCENT_COLOR_/${PALLETE[$plugin_battery_accent_color]}}"
+    result="${template//_ACCENT_COLOR_ICON_/$(get_palette_color "$plugin_battery_accent_color_icon")}"
+    result="${result//_ACCENT_COLOR_/$(get_palette_color "$plugin_battery_accent_color")}"
     result="${result//_ICON_/$plugin_battery_icon}"
     result="${result//_BATTERY_/$battery_percentage}"
 
